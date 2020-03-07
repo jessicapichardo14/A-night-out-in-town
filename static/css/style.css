@@ -1,0 +1,51 @@
+body{
+    background-color:white;
+    padding-top: 56px;
+
+}
+header {
+    padding: 156px 0 100px;
+    background-color: #e6e6e6;
+    background: url(https://images.unsplash.com/photo-1496843916299-590492c751f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80) ;
+    background-size: 100vw 75vh;
+    height: 55vh;
+  }
+  .bg-primary {
+    background-color:#e6e6e6!important;
+}
+  section {
+    padding: 50px 0;
+  }
+  
+.bg-dark {
+    background-color: #d32323!important;
+
+}
+.nav-item a{
+    list-style: none;
+    text-transform: uppercase;
+    padding: 5px;
+    border: 1px solid #ffffff;
+    box-shadow: 2px 2px 2px #cccccc ;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+.intro{
+    background-color: white;
+    height: 80%;
+    background-color:rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    /* border-color: #ebc074; */
+    border: thick solid #ebc074 ;
+    font-family: 'Lobster', cursive;
+    padding: 50px;
+    color: #333333!important;
+}
+
+h1{
+    font-size: 55px;
+   
+}
+.space{
+    margin-bottom: 50px;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>A Night Out in Town</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyBaBEuO5StvYGx8lAUV2FAETrDEwALewr4"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="{{url_for('static', filename = 'css/style.css')}} " rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Navigation -->
+    {% include "nav.html" %}
+
+    <header class="bg-primary text-white">
+        <div class="container intro text-center">
+            <h1>Looking for a fun night out?</h1>
+            <p class="lead"> Find exciting new invents near you, right now! </p>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <p class="lead">This is a great place to find events near you!</p>
+                    <form name="event-search" action="/search" method="GET" onsubmit="return checkform()">
+                        <div class="form-group">
+                            <label for="categories">Category</label>
+                            <select name="categories" class="form-control" id="categories"
+                                aria-describedby="categories">
+
+                                <option value="charities">Charities</option>
+                                <option value="fashion">Fashion</option>
+                                <option value="festivals-fairs">Festivals & Fairs</option>
+                                <option value="film">Film</option>
+                                <option value="food-and-drink">Food & Drink</option>
+                                <option value="kids-family">Kids & Family</option>
+                                <option value="music">Music</option>
+                                <option value="nightlife">Nightlife</option>
+                                <option value="performing-arts">Performing Arts</option>
+                                <option value="sports-active-life">Sports & Active Life</option>
+                                <option value="visual-arts">Visual Arts</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Search in this location</label>
+                            <input type="text" class="form-control" name="location" id="location"
+                                placeholder="Enter Address, City, State or Zip code">
+                        </div>
+                        <button id="getLocation" name="getLocation" class="btn btn-outline-secondary">Use my location instead</button>
+                        <div class="form-group form-check">
+                            <span>
+                                <input type="checkbox" class="form-check-input" id="is_free" name="is_free">
+                                <label class="form-check-label" for="is_free">Only show me free events</label>
+                            </span>
+                        </div>
+                        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Jessica Pichardo 2019</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+<script>
+    $("#getLocation").click(function (event) {
+        event.preventDefault();
+        if (navigator.geolocation) {
+            var fallback = setTimeout(function () {
+                fail('10 seconds expired');
+            }, 10000);
+            navigator.geolocation.getCurrentPosition(
+                function (pos) {
+                    clearTimeout(fallback);
+                    console.log('pos', pos);
+                    var point = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+                    new google.maps.Geocoder().geocode({
+                        'latLng': point
+                    }, function (res, status) {
+                        if (status == google.maps.GeocoderStatus.OK && typeof res[0] !==
+                            'undefined') {
+                            var zip = res[0].formatted_address.match(/,\s\w{2}\s(\d{5})/);
+                            if (zip) {
+                                $("#location").val(zip[1]);
+                            } else fail('Failed to parse');
+                        } else {
+                            fail('Failed to reverse');
+                        }
+                    });
+                },
+                function (err) {
+                    fail(err.message);
+                }
+            );
+        } else {
+            $("#location").val('Geolocation is unsupported');
+        }
+        function fail(err) {
+            console.log('err', err);
+            alert('Error ' + err);
+        }
+    });
+    // prevents enter from submitting form
+    $(document).keypress(
+  function(event){
+    if (event.which == '13') {
+      event.preventDefault();
+    }
+});
+</script>
+
+
+
+</html>
