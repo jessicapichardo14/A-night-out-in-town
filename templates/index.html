@@ -34,6 +34,7 @@
         </div>
     </header>
 
+<!-- categories -->
     <section id="about">
         <div class="container">
             <div class="row">
@@ -45,6 +46,7 @@
                             <select name="categories" class="form-control" id="categories"
                                 aria-describedby="categories">
 
+                                <!-- different options of catefories -->
                                 <option value="charities">Charities</option>
                                 <option value="fashion">Fashion</option>
                                 <option value="festivals-fairs">Festivals & Fairs</option>
@@ -59,11 +61,15 @@
                                 <option value="other">Other</option>
                             </select>
                         </div>
+                        
+                        <!-- search box -->
                         <div class="form-group">
                             <label for="location">Search in this location</label>
                             <input type="text" class="form-control" name="location" id="location"
                                 placeholder="Enter Address, City, State or Zip code">
                         </div>
+
+                        <!-- geolocation button -->
                         <button id="getLocation" name="getLocation" class="btn btn-outline-secondary">Use my location instead</button>
                         <div class="form-group form-check">
                             <span>
@@ -71,6 +77,8 @@
                                 <label class="form-check-label" for="is_free">Only show me free events</label>
                             </span>
                         </div>
+
+                        <!-- search button -->
                         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
@@ -137,6 +145,7 @@
             alert('Error ' + err);
         }
     });
+    
     // prevents enter from submitting form
     $(document).keypress(
   function(event){
