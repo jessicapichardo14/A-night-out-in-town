@@ -29,12 +29,12 @@
 
     <header class="bg-primary text-white">
         <div class="container intro text-center">
-            <h1>Looking for a fun night out?</h1>
-            <p class="lead"> Find exciting new invents near you, right now! </p>
+            <h1 style="font-size: 5vw;"> Looking for a fun night out?</h1>
+            <p style="font-size: 2vw;"> Find exciting new invents near you, right now! </p>
         </div>
     </header>
 
-<!-- categories -->
+    <!-- categories -->
     <section id="about">
         <div class="container">
             <div class="row">
@@ -61,7 +61,7 @@
                                 <option value="other">Other</option>
                             </select>
                         </div>
-                        
+
                         <!-- search box -->
                         <div class="form-group">
                             <label for="location">Search in this location</label>
@@ -70,7 +70,8 @@
                         </div>
 
                         <!-- geolocation button -->
-                        <button id="getLocation" name="getLocation" class="btn btn-outline-secondary">Use my location instead</button>
+                        <button id="getLocation" name="getLocation" class="btn btn-outline-secondary">Use my location
+                            instead</button>
                         <div class="form-group form-check">
                             <span>
                                 <input type="checkbox" class="form-check-input" id="is_free" name="is_free">
@@ -145,14 +146,14 @@
             alert('Error ' + err);
         }
     });
-    
+
     // prevents enter from submitting form
     $(document).keypress(
-  function(event){
-    if (event.which == '13') {
-      event.preventDefault();
-    }
-});
+        function (event) {
+            if (event.which == '13') {
+                event.preventDefault();
+            }
+        });
 </script>
 
 
