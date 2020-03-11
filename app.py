@@ -31,7 +31,7 @@ GOOGLEMAPS_KEY = "AIzaSyBaBEuO5StvYGx8lAUV2FAETrDEwALewr4"
 # GoogleMaps(app)
 
 # you can also pass the key here if you prefer
-GoogleMaps(app, key="AIzaSyBaBEuO5StvYGx8lAUV2FAETrDEwALewr4")
+GoogleMaps(app, key=GOOGLEMAPS_KEY)
 
 
 def map_generator(response):
@@ -54,17 +54,6 @@ def checkbox():
         check = request.args.get('is_free')
         print(check)
     return 'true' if check else 'false'
-
-
-def format_datetime(value, format="%d %b %Y %I:%M %p"):
-    """Format a date time to (Default): d Mon YYYY HH:MM P"""
-    if value is None:
-        return ""
-    return value.strftime(format)
-
-
-# Register the template filter with the Jinja Environment
-app.jinja_env.filters['formatdatetime'] = format_datetime
 
 
 @app.route("/", methods=['GET', 'POST', 'OPTIONS'])
